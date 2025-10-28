@@ -8,7 +8,7 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-# 允许自动提交到仓库
+# 允许提交到仓库
 permissions:
   contents: write
 
@@ -16,7 +16,6 @@ jobs:
   download-assets:
     runs-on: ubuntu-latest
     name: Download assets
-
     steps:
       - name: Download the stats file
         run: |
@@ -38,10 +37,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Push assets
     needs: [download-assets]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          # 使用工作流默认 GITHUB_TOKEN
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download artifacts (v4)
         uses: actions/download-artifact@v4
@@ -49,11 +51,22 @@ jobs:
           name: assets
           path: assets
 
+      - name: Move files into repo
+        run: |
+          # 根据需要更改保存路径，这里放在仓库根目录
+          mv -f assets/stats.svg ./stats.svg
+          mv -f assets/top-langs.svg ./top-langs.svg
+          rm -rf assets
+
       - name: Commit updated assets
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          # 提交到当前运行分支，而不是硬编码 main
+          branch: ${{ github.ref_name }}
           commit_message: "chore(assets): update cached GRS files"
-          branch: main
+          file_pattern: |
+            stats.svg
+            top-langs.svg
           commit_user_name: "github-readme-stats 🤖"
           commit_user_email: actions@github.com
           commit_author: "github-readme-stats 🤖 <actions@github.com>"
