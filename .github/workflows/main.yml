@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
+# 允许自动提交到仓库
+permissions:
+  contents: write
+
 jobs:
   download-assets:
     runs-on: ubuntu-latest
@@ -15,13 +19,15 @@ jobs:
 
     steps:
       - name: Download the stats file
-        run: curl 'https://github-readme-stats-one-iota-82.vercel.app/api?username=FrankFeng-23&show_icons=true&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&hide_border=true&line_height=24' -o stats.svg
+        run: |
+          curl 'https://github-readme-stats-one-iota-82.vercel.app/api?username=FrankFeng-23&show_icons=true&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&hide_border=true&line_height=24' -o stats.svg
 
       - name: Download the top languages file
-        run: curl 'https://github-readme-stats-one-iota-82.vercel.app/api/top-langs/?username=FrankFeng-23&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&layout=compact&hide_border=true&langs_count=8' -o top-langs.svg
+        run: |
+          curl 'https://github-readme-stats-one-iota-82.vercel.app/api/top-langs/?username=FrankFeng-23&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&layout=compact&hide_border=true&langs_count=8' -o top-langs.svg
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload artifacts (v4)
+        uses: actions/upload-artifact@v4
         with:
           name: assets
           path: |
@@ -32,18 +38,22 @@ jobs:
     runs-on: ubuntu-latest
     name: Push assets
     needs: [download-assets]
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Download artifacts (v4)
+        uses: actions/download-artifact@v4
         with:
           name: assets
           path: assets
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit updated assets
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(assets): update cached GRS files"
           branch: main
-          commit_user_name: github-readme-stats 🤖
+          commit_user_name: "github-readme-stats 🤖"
           commit_user_email: actions@github.com
-          commit_author: github-readme-stats 🤖 <actions@github.com>
+          commit_author: "github-readme-stats 🤖 <actions@github.com>"
