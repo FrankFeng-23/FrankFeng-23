@@ -11,17 +11,17 @@
 <p align="center">
 <picture>
   <source
-    srcset="https://github-readme-stats-six-theta-ssqw18bha4.vercel.app/api?username=FrankFeng-23&show_icons=true&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&hide_border=true&line_height=24&theme=dark"
+    srcset="https://github-stats-extended.vercel.app/api?username=FrankFeng-23&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&show_icons=true&include_all_commits=true&theme=transparent"
     media="(prefers-color-scheme: dark)"
   />
-  <img src="https://github-readme-stats-six-theta-ssqw18bha4.vercel.app/api?username=FrankFeng-23&show_icons=true&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&hide_border=true&line_height=24" />
+  <img src="https://github-stats-extended.vercel.app/api?username=FrankFeng-23&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&show_icons=true&include_all_commits=true&theme=transparent" />
 </picture>
 <picture>
   <source
-    srcset="https://github-readme-stats-six-theta-ssqw18bha4.vercel.app/api/top-langs/?username=FrankFeng-23&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&layout=compact&hide_border=true&langs_count=8&theme=dark"
+    srcset="https://github-stats-extended.vercel.app/api/top-langs?username=FrankFeng-23&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&langs_count=4&theme=transparent"
     media="(prefers-color-scheme: dark)"
   />
-  <img src="https://github-readme-stats-six-theta-ssqw18bha4.vercel.app/api/top-langs/?username=FrankFeng-23&role=OWNER,COLLABORATOR,ORGANIZATION_MEMBER&layout=compact&hide_border=true&langs_count=8" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs?username=FrankFeng-23&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&langs_count=4&theme=transparent" />
 </picture>
 <br/>
 <!-- https://github.com/Ashutosh00710/github-readme-activity-graph -->
@@ -30,6 +30,7 @@
 <!-- https://github.com/LelouchFR/skill-icons -->
 <img align="center" src="https://go-skill-icons.vercel.app/api/icons?i=py,rust,matlab,r,cpp,pytorch,azure,flutter,unreal,html,css,js,docker,linux">
 </p>
+
 
 <p align="center">
 <a href="https://github.com/FrankFeng-23"><img src="https://komarev.com/ghpvc/?username=FrankFeng-23&abbreviated=true&color=yellow" ></a>
